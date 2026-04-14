@@ -1,0 +1,45 @@
+feature,importance
+num__RAM_GB,0.38040443606639757
+num__Performance_Score,0.22269401804479094
+num__Processor_Rank,0.11223537099180671
+num__Processor_Tier,0.10390705330818195
+num__Brand_Frequency,0.04113931411912146
+num__GPU_Type,0.0388470228206569
+cat__Brand_Apple,0.02167835510335988
+cat__Brand_MSI,0.01675219826881132
+cat__Brand_Razer,0.014543796442381168
+num__Storage_Type_Encoded,0.011371071732474565
+num__Screen Size (inch),0.00487587422991855
+num__Screen_Quality,0.004156922605043639
+num__Screen_Pixel_Density,0.003550583160725028
+num__Resolution_Width,0.0026519681079706253
+num__Resolution_Pixels,0.0025991781500206983
+num__Weight (kg),0.0024292361770768627
+num__Battery Life (hours),0.0022181947615686395
+num__Resolution_Height,0.0021413861892091626
+cat__Brand_HP,0.0018360809587327734
+num__GPU_Tier,0.0014518114125964196
+num__Portability_Index,0.0013749957751252916
+num__Battery_Weight_Ratio,0.0012909508263685508
+num__RAM_Storage_Ratio,0.001211394681768618
+num__Storage_Capacity,0.0008694771521995616
+num__OS_Encoded,0.0006066372008051714
+cat__Processor_AMD Ryzen 7,0.0004349827076968417
+cat__Processor_AMD Ryzen 5,0.0003409124237574934
+cat__Operating System_Linux,0.0003010900975737072
+cat__Operating System_macOS,0.00029009108500352936
+cat__Processor_Intel i5,0.00022839107319999022
+num__Premium_Brand,0.0002060997337943262
+cat__Operating System_FreeDOS,0.00018749113861619336
+cat__Operating System_Windows,0.00017883587817602134
+cat__Processor_Intel i3,0.00014235715483973686
+cat__Processor_AMD Ryzen 3,0.00011849154766694462
+cat__Processor_Intel i7,0.00011709045342274524
+cat__Brand_Dell,0.00010068404978778693
+cat__Brand_Microsoft,9.343473633537871e-05
+cat__Processor_Intel i9,8.432909663234115e-05
+cat__Brand_Acer,7.992037572921492e-05
+cat__Processor_AMD Ryzen 9,7.68604999917966e-05
+cat__Brand_Samsung,6.458027662760901e-05
+cat__Brand_Asus,6.0609399347531404e-05
+cat__Brand_Lenovo,5.6419984688878616e-05
