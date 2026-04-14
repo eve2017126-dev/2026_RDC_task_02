@@ -138,6 +138,4 @@ if __name__ == "__main__":
     test_path = "../data/raw/laptop_prices_test.csv"
     train_data, test_data = preprocess_data(train_path, test_path)
     print("预处理后的特征列:")
-    print(train_data.columns.tolist())AttributeError: Can only use .str accessor with string values!
-AttributeError: Can only use .str accessor with string values!
-AttributeError: Can only use .str accessor with string values!
+    print(train_data.columns.tolist())
