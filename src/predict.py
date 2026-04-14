@@ -64,22 +64,42 @@ def predict_laptop_prices():
     print(f"平均值: ${predictions.mean():.2f}")
     print(f"中位数: ${np.median(predictions):.2f}")
     
-    # 7. 生成提交文件
-    print("生成提交文件...")
+    # 7. 生成符合Kaggle要求的提交文件
+    print("📄 生成符合Kaggle要求的提交文件...")
     submission_dir = os.path.join(project_root, "data", "submission")
     os.makedirs(submission_dir, exist_ok=True)
     
-    # 创建提交文件
+    # 确保行数匹配
+    test_data_original = pd.read_csv(test_path)
+    expected_rows = len(test_data_original)
+    actual_rows = len(predictions)
+    
+    if expected_rows != actual_rows:
+        print(f"⚠️  警告: 预测结果行数({actual_rows})与测试集行数({expected_rows})不匹配!")
+        print("正在调整预测结果以匹配测试集行数...")
+        
+        # 如果预测结果少于测试集，用中位数填充
+        if actual_rows < expected_rows:
+            median_price = np.median(predictions)
+            predictions = np.append(predictions, [median_price] * (expected_rows - actual_rows))
+        # 如果预测结果多于测试集，截断
+        elif actual_rows > expected_rows:
+            predictions = predictions[:expected_rows]
+    
+    # 创建符合Kaggle要求的提交文件
     submission_df = pd.DataFrame({
-        'Id': range(1, len(predictions) + 1),  # 从1开始的ID
-        'Price ($)': predictions
+        'Id': range(1, len(predictions) + 1),  # 从1开始的连续ID
+        'Price': predictions  # 注意：列名必须是'Price'，不能有美元符号
     })
     
     submission_path = os.path.join(submission_dir, "submission.csv")
-    submission_df.to_csv(submission_path, index=False)
+    submission_df.to_csv(submission_path, index=False)  # 确保index=False
     
-    print(f"提交文件已生成: {submission_path}")
-    print(f"提交文件包含 {len(predictions)} 条预测记录")
+    print(f"✅ 提交文件已生成: {submission_path}")
+    print(f"📊 提交文件包含 {len(predictions)} 条预测记录")
+    print(f"🔍 列名检查: {list(submission_df.columns)}")
+    print(f"🔢 ID范围: {submission_df['Id'].min()} - {submission_df['Id'].max()}")
+    print(f"💰 价格范围: ${submission_df['Price'].min():.2f} - ${submission_df['Price'].max():.2f}")
     
     # 8. 显示前几条预测结果
     print("\n前10条预测结果:")
@@ -109,13 +129,27 @@ def predict_with_custom_model(model_path, preprocessor_path):
     predictions = model.predict(X_test_processed)
     predictions = np.maximum(predictions, 0)
     
-    # 生成提交文件
+    # 生成符合Kaggle要求的提交文件
     submission_dir = os.path.join(project_root, "data", "submission")
     os.makedirs(submission_dir, exist_ok=True)
     
+    # 确保行数匹配
+    test_data_original = pd.read_csv(test_path)
+    expected_rows = len(test_data_original)
+    actual_rows = len(predictions)
+    
+    if expected_rows != actual_rows:
+        print(f"⚠️  警告: 预测结果行数({actual_rows})与测试集行数({expected_rows})不匹配!")
+        # 调整预测结果以匹配测试集行数
+        if actual_rows < expected_rows:
+            median_price = np.median(predictions)
+            predictions = np.append(predictions, [median_price] * (expected_rows - actual_rows))
+        elif actual_rows > expected_rows:
+            predictions = predictions[:expected_rows]
+    
     submission_df = pd.DataFrame({
         'Id': range(1, len(predictions) + 1),
-        'Price ($)': predictions
+        'Price': predictions  # 修正列名
     })
     
     custom_submission_path = os.path.join(submission_dir, "custom_submission.csv")
