@@ -86,10 +86,10 @@ def predict_laptop_prices():
         elif actual_rows > expected_rows:
             predictions = predictions[:expected_rows]
     
-    # 创建符合Kaggle要求的提交文件
+    # 创建符合Kaggle要求的提交文件（修复大小写问题）
     submission_df = pd.DataFrame({
-        'Id': range(1, len(predictions) + 1),  # 从1开始的连续ID
-        'Price': predictions  # 注意：列名必须是'Price'，不能有美元符号
+        'ID': range(1, len(predictions) + 1),  # 注意：必须是全大写的'ID'
+        'Price': predictions  # 价格列名
     })
     
     submission_path = os.path.join(submission_dir, "submission.csv")
@@ -98,7 +98,7 @@ def predict_laptop_prices():
     print(f"✅ 提交文件已生成: {submission_path}")
     print(f"📊 提交文件包含 {len(predictions)} 条预测记录")
     print(f"🔍 列名检查: {list(submission_df.columns)}")
-    print(f"🔢 ID范围: {submission_df['Id'].min()} - {submission_df['Id'].max()}")
+    print(f"🔢 ID范围: {submission_df['ID'].min()} - {submission_df['ID'].max()}")
     print(f"💰 价格范围: ${submission_df['Price'].min():.2f} - ${submission_df['Price'].max():.2f}")
     
     # 8. 显示前几条预测结果
@@ -148,8 +148,8 @@ def predict_with_custom_model(model_path, preprocessor_path):
             predictions = predictions[:expected_rows]
     
     submission_df = pd.DataFrame({
-        'Id': range(1, len(predictions) + 1),
-        'Price': predictions  # 修正列名
+        'ID': range(1, len(predictions) + 1),  # 修复为全大写
+        'Price': predictions
     })
     
     custom_submission_path = os.path.join(submission_dir, "custom_submission.csv")
